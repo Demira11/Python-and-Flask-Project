@@ -10,7 +10,24 @@ class YourModel(Model):
 db.connect()
 db.create_tables([YourModel])
 
-# Your routes and CRUD operations here...
+# Create operation
+@app.route('/create', methods=['POST'])
+def create():
+    name = request.form.get('name')
+    YourModel.create(name=name)
+    return redirect(url_for('index'))
+
+# Read operation
+@app.route('/')
+def index():
+    data = YourModel.select()
+    return render_template('index.html', data=data)
+
+# Delete operation
+@app.route('/delete/<int:id>')
+def delete(id):
+    YourModel.delete().where(YourModel.id == id).execute()
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(debug=True)
