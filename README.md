@@ -4,7 +4,7 @@ This project is a simple Python and Flask application with a SQL database using 
 
 ## Requirements
 
-- Python 3.x
+- Python3
 - Flask
 - PeeWee
 - (Any other dependencies...)
