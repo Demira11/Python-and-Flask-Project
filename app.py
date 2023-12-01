@@ -7,6 +7,9 @@ db = SqliteDatabase('database.db')
 class YourModel(Model):
     name = CharField()
 
+    class Meta:
+        database = db
+
 db.connect()
 db.create_tables([YourModel])
 
@@ -29,6 +32,5 @@ def delete(id):
     YourModel.delete().where(YourModel.id == id).execute()
     return redirect(url_for('index'))
 
-# Run the app
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=True)
